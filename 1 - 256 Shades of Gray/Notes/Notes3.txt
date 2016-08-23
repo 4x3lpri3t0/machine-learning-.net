@@ -1,0 +1,33 @@
+﻿=================================
+Computing Distance between Images
+=================================
+
+What we want is a method that takes two arrays of pixels and returns a number
+that describes how different they are.
+
+Distance is an area of volatility in our algorithm; it is very likely that we will
+want to experiment with different ways of comparing images to figure out what works
+best, so putting in place a design that allows us to easily substitute various
+distance definitions without requiring too many code changes is highly desirable.
+
+An interface gives us a convenient mechanism by which to avoid tight coupling,
+and to make sure that when we decide to change the distance code later,
+we won’t run into annoying refactoring issues. (see IDistance)
+
+MANHATTAN DISTANCE (aka "L1 Distance"):
+Compare 2 images pixel by pixel, compute each difference,
+and add up their absolute values.
+
+====================
+Writing a Classifier
+====================
+
+In every situation, we expect a two-step process:
+We will train the classifier by feeding it a training set of known observations,
+and once that is done, we will expect to be able to predict the label of an image.
+(see IClassifier)
+
+============================
+So, How Do We Know It Works?
+============================
+

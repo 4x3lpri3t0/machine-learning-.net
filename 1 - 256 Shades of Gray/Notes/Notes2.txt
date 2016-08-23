@@ -1,0 +1,57 @@
+﻿===========================
+Start with Something Simple
+===========================
+
+When we have to identify what number an image represents, we could search for the most similar
+image in our known library of 50,000 training examples, and predict what that image says.
+
+If it looks like a five, surely, it must be a five!
+The outline of our algorithm will be the following.
+
+Given a 28x28 pixels image that we will try to recognize (the “Unknown”),
+and our 50,000 training examples (28x28 pixels images and a label), we will:
+* compute the total difference between Unknown and each training example
+* find the training example with the smallest difference (the “Closest”)
+* predict that “Unknown” is the same as “Closest
+
+===========================
+Our First Model, C# Version
+===========================
+
+First row is a header, and each row afterward represents an individual image.
+The first column (“label”), indicates what number the image represents,
+and the 784 columns that follow (“pixel0”, “pixel1”, ...) represent each pixel
+of the original image, encoded in grayscale, from 0 to 255 (a 0 represents pure black, 255 pure
+white, and anything in between is a level of gray).
+
+We end up with 785 columns total:
+one for the label, and 28 lines x 28 columns = 784 pixels
+
+================
+Reading the Data
+================
+
+We will store each image’s data in an Observation class, and represent the algorithm
+with an interface, IClassifier, so that we can later create model variations.
+
+1º: we need to read the data from the CSV file into a collection of observations.
+(see Observation class)
+
+2º: let’s add a DataReader class with which to read observations from our data file.
+
+Note how our code here is mainly LINQ expressions! Expression-oriented code,
+like LINQ (or, as you’ll see later, F#), helps you write very clear code that conveys
+intent in a straightforward manner, typically much more so than procedural code does.
+
+It reads pretty much like English: “read all the lines, skip the headers,
+split each line around the commas, parse as integers, and give me new observations.”
+
+It also fits particularly well with data manipulation tasks, as it gives a natural way
+to describe data transformation workflows (bread and butter of ML).
+
+NEXT TASK: write a Classifier, which, when passed an Image, will compare it to each
+Observation in the dataset, find the most similar one, and return its label.
+
+To do that, we need two elements:
+* a Distance
+* a Classifier

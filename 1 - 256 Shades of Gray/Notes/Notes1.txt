@@ -1,0 +1,74 @@
+﻿===============================================================
+Building a Program to Automatically Recognize Images of Numbers
+===============================================================
+
+MACHINE LEARNING:
+
+Writing programs that learn how to perform a task from experience,
+without being explicitly programmed to do so.
+
+LEARNING:
+
+A program is learning if, as it is given more data points,
+it becomes automatically better at performing a given task.
+
+The program should be able to learn from experience
+	-> pre-existing dataset of past observations
+	-> data accumulated by the program itself as it performs its job (Online Learning)
+
+FEATURE EXTRACTION:
+
+A significant part of machine learning revolves around gathering and
+preparing data to be in a form your program will be able to use.
+
+MEASURE:
+
+Your program needs to be able to understand how well it is performing its task,
+so that it can adjust and learn from experience.
+Thus, it is crucial to define a measure that properly captures what it means
+to “do the task” well or badly.
+
+SCIENTIFIC METHOD:
+
+You are trying to identify a model that adequately predicts the world by formulating
+hypotheses and conducting a series of validation experiments to decide how to move forward.
+
+======================================================
+A Classic Machine Learning Problem: Classifying Images
+======================================================
+
+Our Challenge: Build a Digit Recognizer
+=======================================
+
+We have a dataset of 50,000 images.
+Each image is a single digit, written down by a human,
+and scanned in 28 x 28 pixels resolution, encoded in grayscale,
+with each pixel taking one of 256 possible shades of gray,
+from full white to full black.
+
+For each scan, we also know the correct answer,
+that is, what number the human wrote down.
+
+This dataset is known as the TRAINING SET.
+
+This is known as a CLASSIFICATION problem:
+Our goal is to separate images between known "categories" (0 - 9).
+
+======================================
+Distance Functions in Machine Learning
+======================================
+
+Two images that are absolutely identical have a distance of zero,
+and the more the pixels differ, the larger the distance will be.
+
+Our similarity measure has limitations.
+If you took one image and simply cloned it,
+but shifted it (for instance) by one pixel to the left,
+their distance pixel-by-pixel might end up being quite large,
+even though the images are essentially the same.
+
+Distance functions also often appear in ML under another name: COST FUNCTIONS.
+
+If we are trying to predict a number,
+our prediction error—that is, how far our prediction is from the actual number—
+is a DISTANCE.
