@@ -31,3 +31,22 @@ and once that is done, we will expect to be able to predict the label of an imag
 So, How Do We Know It Works?
 ============================
 
+================
+Cross-validation
+================
+
+We could feed images to the classifier, ask for a prediction, compare it to the true answer,
+and compute how many we got right.
+
+That dataset is known as a VALIDATION SET (or "test data").
+
+CROSS-VALIDATION:
+Put aside part of the data you have available and split it into a training set and a validation set.
+Use the 1º one to train your model and the 2º one to evaluate the quality of your model.
+
+===================================
+Evaluating the Quality of Our Model
+===================================
+
+(see Evaluator)
+If we run this now -> 93.40% correct

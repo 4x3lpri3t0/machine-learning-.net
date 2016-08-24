@@ -1,0 +1,53 @@
+﻿====================
+Improving Your Model
+====================
+
+If your model is not good enough, you would start thinking about ways to improve predictions,
+create new models, and run them against the validation set, comparing the percentage correctly
+classified so as to evaluate whether your new models work any better, progressively refining
+your model until you are satisfied with it.
+
+F# is a wonderful .NET language, and is uniquely suited for machine learning and data science;
+it will make our work experimenting with models much easier.
+
+So, now that we have a working C# version, let’s dive in and rewrite it in F#
+so that we can compare and contrast the two and better understand the F# way.
+
+===================================
+Introducing F# for Machine Learning
+===================================
+
+In order to see the quality of a model, after any code change,
+we needed to rebuild the console app and run it, reload the data, and compute.
+
+=======================================================
+Live Scripting and Data Exploration with F# Interactive
+=======================================================
+
+F# Interactive is a REPL (Read-Evaluate-Print Loop), basically a live-scripting environment
+where you can play with code without having to go through the whole cycle described before.
+
+(add "FSharp" library project)
+
+F# and C# are completely interoperable and can talk to each other without problems.
+Use C# for what C# is great at, and leverage the F# goodness for where F# shines!
+
+script.fsx -> are not part of the build.
+They can be used outside of Visual Studio as pure, free-standing scripts.
+
+.fsx files constitute a wonderful “scratch pad” where you can experiment with code,
+with all the benefits of IntelliSense.
+
+While scripts are not part of the solution build, they are part of the solution itself,
+and can (should) be versioned as well, so that you are always in a position to replicate
+whatever experiment you were conducting in a script.
+
+============================
+Creating our First F# Script
+============================
+
+(see Script.fsx)
+
+To run -> 
+	1º : Select the code
+	2º : right click, and pick “Run in Interactive” (or ALT + ENTER)

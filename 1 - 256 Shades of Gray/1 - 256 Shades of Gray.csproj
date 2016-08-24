@@ -48,6 +48,7 @@
     <Compile Include="DataReader.cs" />
     <Compile Include="Distances\IDistance.cs" />
     <Compile Include="Distances\ManhattanDistance.cs" />
+    <Compile Include="Evaluator.cs" />
     <Compile Include="Observation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,6 +59,7 @@
     <None Include="validationsample.csv" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Notes\Notes4.txt" />
     <Content Include="Notes\Notes3.txt" />
     <Content Include="Notes\Notes2.txt" />
     <Content Include="Notes\Notes1.txt" />
