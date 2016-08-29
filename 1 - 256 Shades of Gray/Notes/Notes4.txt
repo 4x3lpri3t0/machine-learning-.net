@@ -51,3 +51,24 @@ Creating our First F# Script
 To run -> 
 	1º : Select the code
 	2º : right click, and pick “Run in Interactive” (or ALT + ENTER)
+
+Suppose that you wanted to know the label of Observation 100 in the training set.
+No need to reload or recompile anything: just type the following in the F# Interactive window, and execute:
+	
+	let test = trainingData.[100].Label;;
+
+This is convenient in situations in which your dataset is large, and loading it is time consuming.
+
+==============================
+Dissecting Our First F# Script
+==============================
+
+* Powerful type-inference engine, which will use every hint available to figure out what the type is.
+* Whitespace matters.
+* The function will evaluate to the value of the last expression.
+
+===============================
+Creating Pipelines of Functions
+===============================
+
+File.ReadAllLines : we can use anything made available in the .NET framework from F#
