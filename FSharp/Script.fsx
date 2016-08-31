@@ -15,3 +15,8 @@ let reader path =
 
 let trainingPath = @"C:\Users\Axel\Desktop\machine-learning-.net\1 - 256 Shades of Gray\trainingsample.csv"
 let trainingData = reader trainingPath
+
+let manhattanDistance (pixels1,pixels2) =
+    Array.zip pixels1 pixels2
+    |> Array.map (fun (x,y) -> abs (x-y))
+    |> Array.sum

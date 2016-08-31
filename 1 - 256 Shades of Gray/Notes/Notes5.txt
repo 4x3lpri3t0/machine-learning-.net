@@ -1,0 +1,30 @@
+﻿==================================================
+Manipulating Data with Tuples and Pattern Matching
+==================================================
+
+Now that we have data, we need to find the closest image from the training set.
+
+	let manhattanDistance (pixels1,pixels2) =
+		Array.zip pixels1 pixels2
+		|> Array.map (fun (x,y) -> abs (x-y))
+		|> Array.sum
+
+Here we are using another central feature of F#: the combination of tuples and pattern matching.
+
+Tuples exist in C# as well, but the lack of pattern matching in the language really cripples their usefulness,
+which is quite unfortunate, because it’s a deadly combination for data manipulation.
+
+How pattern matching works on tuples:
+
+	let x = "Hello", 42 // create a tuple with 2 elements
+	let (a, b) = x // unpack the two elements of x by pattern matching
+	printfn "%s, %i" a b
+	printfn "%s, %i" (fst x) (snd x)
+
+Comma typically indicates a tuple, so watch out for this in F# code, as this can be slightly confusing.
+
+Note the use of the wildcard _ below, which means “ignore the element in 2nd position”:
+	
+	let y = 1,2,3,4
+	let (c,_,d,e) = y
+	printfn "%i, %i, %i" c d e

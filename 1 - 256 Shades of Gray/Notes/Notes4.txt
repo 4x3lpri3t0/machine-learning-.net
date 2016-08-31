@@ -72,3 +72,28 @@ Creating Pipelines of Functions
 ===============================
 
 File.ReadAllLines : we can use anything made available in the .NET framework from F#
+
+The next step in our C# code involved extracting an Observation from each line using the ObservationFactory method,
+which we did by using the following:
+
+	myData.Select(line => ObservationFactory(line));
+
+The equivalent line in F# is as follows:
+	
+	myData |> Array.map (fun line -> toObservation line)
+
+“|>” : This is known as the pipe-forward operator.
+It takes whatever the result of the previous expression was and passes it forward to the next
+function in the pipeline, which will use it as the last argument.
+
+If we used the raw Array.map version, the code would look like this:
+
+	let transformed = Array.map (fun line -> toObservation line) data
+
+Array.map expects two arguments: what transformation to apply to each array element,
+and what array to apply it to.
+
+Because the target array is the last argument of the function, we can use pipe-forward to “feed”
+an array to a map, like this:
+
+	data |> Array.map (fun line -> toObservation line)
