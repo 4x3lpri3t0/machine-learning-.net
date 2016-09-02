@@ -59,6 +59,7 @@
     <None Include="validationsample.csv" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Notes\Notes6.txt" />
     <Content Include="Notes\Notes5.txt" />
     <Content Include="Notes\Notes4.txt" />
     <Content Include="Notes\Notes3.txt" />

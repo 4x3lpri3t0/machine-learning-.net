@@ -1,10 +1,6 @@
 ﻿using _1___256_Shades_of_Gray.Classifiers;
 using _1___256_Shades_of_Gray.Distances;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _1___256_Shades_of_Gray
 {
