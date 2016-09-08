@@ -1,0 +1,59 @@
+======================================================
+Automatically Detect spam in Text Using Bayes’ Theorem
+======================================================
+
+Your email client probably includes some spam filter mechanism
+ |-> detects unwanted promotional materials in your incoming messages -> "spam folder"
+
+By automatically taking care of tedious activities and saving us from mistakes,
+computers enable us humans to focus on more interesting, thought-engaging activities.
+
+Spam detection -> Classification
+
+Given a collection of email messages, we need to classify them into two categories/classes:
+  |-> Spam : message that should go directly to the trash
+  |-> Ham : valid message that we do want to read
+
+We will
+  |-> establish an approach to working with text -> extract features
+  |-> look at Bayes’ Theorem
+		|-> implement a naïve Bayes classifier
+		|-> algorithm that uses vocabulary frequency to determine document types
+  |-> discuss the importance of understanding your data for properly interpreting your results
+
+============================================
+Our Challenge: Build a Spam-Detection Engine
+============================================
+
+Getting to Know Our Dataset
+===========================
+
+Are there words that appear more frequently in spam, or in ham? This can help guide us in
+building a smart engine to automatically differentiate ham from spam.
+
+* Spend time exploring your data!
+
+Using Discriminated Unions to Model Labels
+==========================================
+
+discriminated unions -> similar to C# enums
+
+	type DocType =
+		| Ham
+		| Spam
+
+Discriminated unions work with pattern matching
+	-> allow you to write code that describes your business domain in a very clear fashion
+
+Each example in our training set is either Ham or Spam and contains text.
+We could represent this as a tuple, where each example is a DocType and a string,
+and process examples along these lines:
+
+	let identify (example:DocType*string) =
+		let docType,content = example
+		match docType with
+		| Ham -> printfn "'%s' is ham" content
+		| Spam -> printfn "'%s' is spam" content
+
+Try typing this in FSI:
+	identify (Ham,"good message");;

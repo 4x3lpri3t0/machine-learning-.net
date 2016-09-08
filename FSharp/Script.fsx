@@ -28,9 +28,9 @@ let euclideanDistance (pixels1,pixels2) =
     |> Array.map (fun (x,y) -> pown (x-y) 2)
     |> Array.sum
 
-let train (trainingset:Observation[]) (dist:Distance) =
+let train (trainingSet:Observation[]) (dist:Distance) =
     let classify (pixels:int[]) =
-        trainingset
+        trainingSet
         |> Array.minBy (fun x -> dist (x.Pixels, pixels))
         |> fun x -> x.Label
     classify
@@ -46,13 +46,14 @@ let evaluate validationSet classifier =
 let manhattanModel = train trainingData manhattanDistance
 let euclideanModel = train trainingData euclideanDistance
 
-printfn "Manhattan"
+printfn "Manhattan" // 93.4%
 evaluate validationData manhattanModel
-printfn "Euclidean"
+printfn "Euclidean" // 94.4%
 evaluate validationData euclideanModel
 
-// Illustration: full distance function
+// ... those are 1 Nearest Neighbor models
 
+// Illustration: full distance function
 let d (X,Y) = 
     Array.zip X Y 
     |> Array.map (fun (x,y) -> pown (x-y) 2) 

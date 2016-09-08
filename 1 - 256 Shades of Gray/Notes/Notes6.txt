@@ -2,3 +2,125 @@
 Improving Our Model
 ===================
 
+Building a good predictive model involves a lot of trial and error,
+and being properly set up to iterate rapidly, experiment, and validate ideas is crucial.
+
+=================================================
+Experimenting with Another Definition of Distance
+=================================================
+
+Euclidean Distance :
+the distance between two points X and Y is the square root of the sum of the
+difference between each of their coordinates, squared up.
+
+	let euclideanDistance (X,Y) =
+		Array.zip X Y
+		|> Array.map (fun (x,y) -> pown (x-y) 2)
+		|> Array.sum
+		|> sqrt
+
+pown : “raise to the nth power”
+
+The general version is the ** operator, as in let x = 2.0 ** 4.0;
+pown will give you significant performance boosts when you know the exponent is an integer.
+
+(later we drop the '|> sqrt' for performance boost)
+
+===================================
+Factoring Out the Distance Function
+===================================
+
+Refactoring the distance:
+
+	type Distance = int[] * int[] -> int
+	
+	let manhattanDistance (pixels1,pixels2) =
+		Array.zip pixels1 pixels2
+		|> Array.map (fun (x,y) -> abs (x-y))
+		|> Array.sum
+	
+	let euclideanDistance (pixels1,pixels2) =
+		Array.zip pixels1 pixels2
+		|> Array.map (fun (x,y) -> pown (x-y) 2)
+		|> Array.sum
+
+	let train (trainingset:Observation[]) (dist:Distance) =
+		let classify (pixels:int[]) =
+			trainingset
+			|> Array.minBy (fun x -> dist (x.Pixels, pixels))
+			|> fun x -> x.Label
+		classify
+
+We create a type Distance, which is a "function signature"
+that expects a pair of pixels and returns an integer.
+
+We can now pass any Distance we want as an argument to the train function,
+which will return a classifier using that particular distance.
+
+This approach, which focuses on composing functions instead of objects,
+is typical of what’s called a "functional style" of programming.
+
+Pretty much every feature and innovation that has made its way into C#
+since version 3.5 (LINQ, Async, ...) has been borrowed from functional programming.
+
+One could describe C# as a language that is object oriented first, but supports functional idioms,
+whereas F# is a functional programming language first, but can accommodate an object-oriented style as well.
+
+* Functional fits much better with machine learning algorithms.
+* Functional offers serious benefits.
+
+We can now create two models and compare their performance:
+
+	let manhattanClassifier = train trainingData manhattanDistance
+	let euclideanClassifier = train trainingData euclideanDistance
+	
+	printfn "Manhattan" // 93.4%
+	evaluate validationData manhattanClassifier
+	
+	printfn "Euclidean" // 94.4%
+	evaluate validationData euclideanClassifier
+
+1% might not sound like much, but if you are already at 93.4%,
+you just reduced your error from 6.6% to 5.6%, a gain of around 15%.
+
+* Automate your process as much as possible with scripts
+* use source control -> replicate your model
+
+============================================
+What to Look for in a Good Distance Function
+============================================
+
+* At the heart of every machine learning model, there is a distance/cost function.
+
+* All the learning process boils down to the computer attempting to find the best way
+  possible to fit known data to a particular problem – and the definition of “best fit”
+  is entirely encapsulated in the distance function.
+
+=======
+Why F#?
+=======
+
+* Make it a great fit for data manipulation
+
+* Focus on functions -> works great for applying functions to data and shaping them any way you need
+
+* pipe-forward operator |> for combining transformations and creating
+  a pipeline that represents data transformation workflows
+
+* Ability to pack data into tuples and unpack it with pattern matching
+
+* Built-in functions in the Array, List, and Seq modules... like LINQ on steroids
+
+=============
+Going Further
+=============
+
+When you see the picture of a number, you don’t go over every picture you have ever seen
+in your entire life to decide whether this is a match—you know higher-level concepts that allow you to filter
+and recognize (“A zero looks like a circle”).
+
+More advanced algorithms, such as Support Vector Machines or Neural Networks, could be used on our problem,
+and their behavior is more in line with this concept of abstract “learning”:
+They process the data during the training phase and extract a reduced representation. The obvious
+downside is that the training phase will actually be much more involved; the upside is that the resulting
+model will be both smaller and faster.
