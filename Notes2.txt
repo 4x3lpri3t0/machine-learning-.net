@@ -2,3 +2,5 @@
 Reading Our Dataset
 ===================
 
+Read the file and apply a function to each line in order to parse it into label and content,
+splitting it around '\t', the tab symbol.
