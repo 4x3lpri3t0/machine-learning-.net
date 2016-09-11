@@ -1,0 +1,69 @@
+===================
+Reading Our Dataset
+===================
+
+Using File.ReadAllLines to read the contents of the dataset may not always
+be the best idea.
+
+We are loading everything in memory at once into an array, and then
+creating another array to store the result of the Array.map transformation.
+
+This particular dataset contains around 5,000 lines, which is fairly small,
+but when dealing with larger datasets, you can use a streaming version
+(such as System.IO.StreamReader.ReadLine()) to load the dataset
+one line at a time into memory.
+
+=========================
+Deciding on a Single Word
+=========================
+
+Find a way to transform these strings into features we can work with.
+
+Using Words as Clues
+====================
+
+As an example, the word “FREE” (all caps!) appears early on in
+a couple of Spam items, and doesn’t seem to pop up often in Ham.
+
+Let’s first try to confirm that our intuition is correct by
+counting how many Spam messages contain that particular string
+and comparing it with the Ham messages.
+
+First, let’s filter our dataset so as to keep only Spam,
+then filter again, this time retaining only messages that contain “FREE”
+and finally count how many items are left:
+
+let spamWithFREE =
+	dataset
+	|> Array.filter (fun (docType,_) -> docType = Spam)
+	|> Array.filter (fun (_,sms) -> sms.Contains("FREE"))
+	|> Array.length
+
+“FREE” is indeed used much more frequently in Spam than in Ham,
+and seems like a good flag to use for differentiating the two categories.
+We could use this to build a very primitive Spam classifier, like this:
+
+let primitiveClassifier (sms:string) =
+	if (sms.Contains "FREE")
+	then Spam
+	else Ham
+
+======================================
+Putting a Number on How Certain We Are
+======================================
+
+* How reliably a specific word indicates whether a message is Ham or Spam?
+* Often resort to decision trees as a way to better understand probability problems.
+
+(decision_tree.png)
+
+* Decision trees: Series of pipelines
+
+We have a 15.0% probability that a document contains “FREE”,
+given that the document is Spam.
+
+(flipped_decision_tree.png)
+
+...gives us the information we care about: the probability that a document
+is Spam, if it contains the word “FREE,” is 112/113,
+or 99.1% (thus scientifically confirming our earlier intuition).

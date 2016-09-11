@@ -1,4 +1,6 @@
 ﻿open System.IO
+open System
+open System.Linq
 
 type DocType =
     | Ham
@@ -22,3 +24,17 @@ let path = __SOURCE_DIRECTORY__ + @"..\..\Data\" + fileName
 let dataset =
     File.ReadAllLines path
     |> Array.map parseLine
+
+// Count FREE
+
+let spamWithFREE =
+    dataset
+    |> Array.filter (fun (docType,_) -> docType = Spam)
+    |> Array.filter (fun (_,sms) -> sms.Contains("FREE"))
+    |> Array.length
+
+let hamWithFREE =
+    dataset
+    |> Array.filter (fun (docType,_) -> docType = Ham)
+    |> Array.filter (fun (_,sms) -> sms.Contains("FREE"))
+    |> Array.length

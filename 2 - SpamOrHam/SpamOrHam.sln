@@ -7,8 +7,12 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SpamOrHam", "SpamOrHam\Spam
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notes", "Notes", "{126051D9-4EDE-4935-979C-07D4A750192E}"
 	ProjectSection(SolutionItems) = preProject
-		Notes1.txt = Notes1.txt
-		Notes2.txt = Notes2.txt
+		Notes\1_decision_tree.png = Notes\1_decision_tree.png
+		Notes\2_flipped_decision_tree.png = Notes\2_flipped_decision_tree.png
+		Notes\3_bayes_theorem.png = Notes\3_bayes_theorem.png
+		Notes\Notes1.txt = Notes\Notes1.txt
+		Notes\Notes2.txt = Notes\Notes2.txt
+		Notes3.txt = Notes3.txt
 	EndProjectSection
 EndProject
 Global
