@@ -14,6 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notes", "Notes", "{126051D9
 		Notes\Notes1.txt = Notes\Notes1.txt
 		Notes\Notes2.txt = Notes\Notes2.txt
 		Notes3.txt = Notes3.txt
+		Notes4.txt = Notes4.txt
 	EndProjectSection
 EndProject
 Global

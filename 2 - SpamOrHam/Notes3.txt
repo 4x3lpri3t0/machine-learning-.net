@@ -31,3 +31,30 @@ Essentially, we are making up a fictional message containing every token
 Combining Multiple Words
 ========================
 
+There are many words in a message, each of which pushes toward Ham or Spam with various strength.
+	-> How can we combine that information -> into a single value?
+
+Breaking Text into Tokens
+=========================
+
+“Driving, cant txt.”
+-> break the message into a set of words, “driving,” “cant,” and “txt,”
+	-> use that representation instead of the original text.
+
+Breaking up a block of text into meaningful elements
+	-> TOKENIZATION
+
+* We are transforming each message into a collection of features
+	-> each feature being the presence or absence of a particular word.
+
+“I like carrots and hate broccoli” and “I like broccoli and hate carrots” will be broken into
+the same set of tokens [and; broccoli; carrots; hate; i; like]
+	-> Will therefore be considered identical.
+	-> But we are not trying to understand the meaning of sentences here;
+	we merely need to identify which words are connected to a particular behavior.
+
+* Rather than argue over whether capitalization or punctuation matters
+	-> Settle that question easily with cross-validation later on
+	-> Create alternate models for each hypothesis
+		-> compare their performance
+		-> let the data decide
