@@ -1,0 +1,32 @@
+========================
+Naïvely Combining Scores
+========================
+
+We've decided to decompose our message into 3 tokens —“driving” “cant” “txt”—
+	-> We still need to figure out a way to compute the probability
+		-> that the message is Ham or Spam
+
+(5_bayes_with_tokens.png)
+
+We can simplify that.
+Let’s assume that tokens are independent — that is, seeing one token in a
+message has no bearing on what other tokens might be present.
+In that case, we can compute:
+
+P(SMS contains driving&cant&txt | SMS is Spam)
+	= P(SMS contains "driving" | SMS is Spam)
+	x P(SMS contains "cant" | SMS is Spam)
+	x P(SMS contains "txt" | SMS is Spam)
+
+With a bit of Bayes’ Theorem Jiu-Jitsu applied on the formula above, you should end up with the following:
+
+P(SMS is Spam | SMS contains "driving,cant,txt")
+	= P(SMS contains "driving" | SMS is Spam)
+	x P(SMS contains "cant" | SMS is Spam)
+	x P(SMS contains "txt" | SMS is Spam)
+	x             P(SMS is Spam)
+	  --------------------------------------
+		P(SMS contains "driving,cant,txt")
+
+
+* Instead of trying to model the English language in its full complexity, we are using a much simpler model.

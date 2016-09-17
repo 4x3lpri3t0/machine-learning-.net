@@ -1,0 +1,46 @@
+=========================
+Simplified Document Score
+=========================
+
+At this point we are almost ready to dive into code and implement the classifier.
+
+We can easily extract:
+* P(SMS is Spam), the proportion of Spam messages in the training set
+* P(SMS contains "X" | SMS is Spam), the proportion of Spam messages that contain the token “X”
+
+* What we are interested in is deciding whether a message is Spam or Ham
+* Drop the common term, spare ourselves some unnecessary computations
+	-> simply compute a “score” instead of a probability:
+
+	Score(SMS is Spam | SMS contains driving & cant & text) = 
+		  P(SMS contains driving | SMS is Spam)
+		x P(SMS contains cant | SMS is Spam)
+		x P(SMS contains txt | SMS is Spam)
+		x P(SMS is Spam)
+
+* If Score(Spam) > Score(Ham), we will classify the message as Spam
+
+As our formula involves multiplying together these probabilities
+	-> result will get close to zero
+		-> could cause rounding problems
+
+Old trick: transform the computation into logarithms
+	-> As log (a * b) = log a + log b
+		-> turn our formula from a product to a sum
+			-> avoiding rounding issues
+	-> Because log is an increasing function
+		-> transforming the formula through log will preserve the ranking of scores
+
+Score(SMS is Spam | SMS contains "driving,cant,txt")
+	= Log(P(SMS is Spam))
+	+ Log(Laplace(SMS contains "driving" | Spam))
+	+ Log(Laplace(SMS contains "cant" | Spam))
+	+ Log(Laplace(SMS contains "txt" | Spam))
+
+Each token has a Ham score and a Spam score, quantifying how strongly it indicates each case.
+
+When trying to decide whether a document is Spam, the algorithm starts with a Spam score,
+the baseline level of Spam, and each token increases or decreases the document Spam score,
+independently of other tokens.
+
+If the document Spam score ends up being higher than the Ham score, the document is Spam.

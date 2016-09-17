@@ -1,0 +1,21 @@
+===========================
+Implementing the Classifier
+===========================
+
+Naïve Bayes classifier
+	relies on two elements:
+		-> tokenizer to break documents into tokens
+		-> set of tokens
+
+Given these two components, we need to learn from a sample of examples what score each
+token gets for both Spam and Ham, as well as the relative weight of each group.
+
+(6_naïve_bayes_learning_phase.png)
+
+1- Starting from a corpus of labeled messages, we break them into two groups
+	-> Spam and Ham, and measure their relative size
+
+2- For the selected set of tokens (here “free” “txt” and “car”)
+	-> we measure their frequency and reduce each group of documents to a score corresponding
+	to its overall weight
+		-> come up with a score for each token for that particular group
