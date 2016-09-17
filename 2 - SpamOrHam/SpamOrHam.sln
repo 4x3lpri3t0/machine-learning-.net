@@ -11,10 +11,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notes", "Notes", "{126051D9
 		Notes\2_flipped_decision_tree.png = Notes\2_flipped_decision_tree.png
 		Notes\3_bayes_theorem.png = Notes\3_bayes_theorem.png
 		Notes\4_bayes_applied.png = Notes\4_bayes_applied.png
+		Notes\5_bayes_with_tokens.png = Notes\5_bayes_with_tokens.png
 		Notes\Notes1.txt = Notes\Notes1.txt
 		Notes\Notes2.txt = Notes\Notes2.txt
 		Notes3.txt = Notes3.txt
 		Notes4.txt = Notes4.txt
+		Notes5.txt = Notes5.txt
 	EndProjectSection
 EndProject
 Global

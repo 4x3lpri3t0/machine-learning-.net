@@ -1,0 +1,21 @@
+=========================
+Simplified Document Score
+=========================
+
+At this point we are almost ready to dive into code and implement the classifier.
+
+We can easily extract:
+* P(SMS is Spam), the proportion of Spam messages in the training set
+* P(SMS contains "X" | SMS is Spam), the proportion of Spam messages that contain the token “X”
+
+* What we are interested in is deciding whether a message is Spam or Ham
+* Drop the common term, spare ourselves some unnecessary computations
+	-> simply compute a “score” instead of a probability:
+
+	Score(SMS is Spam | SMS contains driving & cant & text) = 
+		  P(SMS contains driving | SMS is Spam)
+		x P(SMS contains cant | SMS is Spam)
+		x P(SMS contains txt | SMS is Spam)
+		x P(SMS is Spam)
+
+* If Score(Spam) > Score(Ham), we will classify the message as Spam
